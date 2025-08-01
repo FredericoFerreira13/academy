@@ -27,8 +27,8 @@ jobs:
     - uses: ./.github/actions/maven_build
     - uses: ./.github/actions/docker_build
       with:
-        image_name : $DockerImageName
-        tag_name: $DockerTagName
+        image_name : ${{DockerImageName}}
+        tag_name: ${{DockerTagName}}
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
     - name: List docker images
       run: docker image ls

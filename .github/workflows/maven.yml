@@ -14,8 +14,8 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  DockerImageName: "academy"
-  DockerTagName: "v1.0"
+  DockerImageName: academy
+  DockerTagName: v1.0
 
 jobs:
   build:

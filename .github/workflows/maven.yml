@@ -26,8 +26,10 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: maven
+        cache: maven-
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Create docker image
-      run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+      run: | 
+        docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+        docker image ls

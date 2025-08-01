@@ -18,5 +18,5 @@ runs:
         password: ${{ inputs.DOCKERHUB_TOKEN }}
 
     - name: Build Docker Image
-      run: docker push fredericomiguelferreira079/academy:v1.0
+      run: docker push ${{ inputs.DOCKERHUB_USERNAME }}/academy:v1.0
       shell: bash

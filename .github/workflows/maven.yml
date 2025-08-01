@@ -29,5 +29,9 @@ jobs:
         cache: maven
     - uses: ./.github/actions/maven_build
     - uses: ./.github/actions/docker_build
+      with:
+        image_name : "academy"
+        tag_name: "1.0"
+        path_dockerfile: 'src/main/docker/Dockerfile.jvm'
     - name: List docker images
       run: docker image ls

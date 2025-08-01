@@ -1,12 +1,24 @@
 name: DockerBuild
 description: Docker build
 inputs:
-  replace_with_your_input_name:
+  path_dockerfile:
     description: "Replace-With-Your-Input-Description"
     required: false
-    default: "Replace-With-Your-Input-Default-Value"
+    default: "Dockerfile"
+  image_name:
+    description: "Replace-With-Your-Input-Description"
+    required: true
+  tag_name:
+    description: "Replace-With-Your-Input-Description"
+    required: false
 runs:
   using: composite
   steps:
-    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+    - run: |
+        if [ -z "${{ inputs.tag_name }}" ]; then
+            export TAG=$(date +%s)
+        else
+            export TAG="${{ inputs.tag_name }}"
+        fi
+        docker build . --file ${{ inputs.path_dockerfile }} --tag academy:$(date +%s)
       shell: bash

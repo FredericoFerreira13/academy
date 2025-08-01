@@ -17,7 +17,6 @@ env:
   DockerImageName: academy
   DockerTagName: 1.0
 
-
 jobs:
   build:
 
@@ -37,6 +36,8 @@ jobs:
         image_name : $DockerImageName
         tag_name: $DockerTagName
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
+    - name: save docker image
+      run: docker save -o ${{DockerImageName}}.tar ${{DockerTagName}}
 
   list-imgs:
     needs: build

@@ -1,0 +1,12 @@
+name: DockerBuild
+description: Docker build
+inputs:
+  replace_with_your_input_name:
+    description: "Replace-With-Your-Input-Description"
+    required: false
+    default: "Replace-With-Your-Input-Default-Value"
+runs:
+  using: composite
+  steps:
+    - run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
+      shell: bash

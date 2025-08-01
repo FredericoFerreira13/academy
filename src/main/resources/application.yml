@@ -1,0 +1,48 @@
+external-api:
+  url: http://localhost:3001
+quarkus:
+  http:
+    port: 8082
+    cors:
+      enabled: true
+      origins: "*"
+      methods: "GET,POST,PUT,DELETE,OPTIONS"
+      headers: "accept,authorization,content-type"
+      exposed-headers: "location"
+  datasource:
+    db-kind: postgresql
+    devservices:
+      enabled: true
+      reuse: false
+      image-name: "postgres:14.10-alpine"
+      container-env:
+        "POSTGRES_DB": "workstation-rack"
+        "POSTGRES_USER": "postgres"
+        "PASSWORD": "postgres"
+      port: 5433
+      volumes:
+        "db/init-db": "/docker-entrypoint-initdb.d"
+      db-name: "workstation-rack"
+      username: "postgres"
+      password: "postgres"
+    jdbc:
+      url: jdbc:postgresql://localhost:5433/workstation-rack
+      initial-size: 2
+      min-size: 2
+      max-size: 5
+  rest-client:
+    external-api:
+      url: ${external-api.url}
+
+  liquibase:
+    migrate-at-start: true
+    search-path:
+      - "src/main/resources/db/"
+    change-log: "changelog.xml"
+  hibernate-orm:
+    packages: com.ctw.workstation
+    validate-in-dev-mode: false
+    database:
+      generation: none
+    log:
+      sql: ${hibernate_orm_log_sql:false}

@@ -27,10 +27,17 @@ jobs:
     - uses: ./.github/actions/maven_build
     - uses: ./.github/actions/docker_build
       with:
-        image_name : ${{ env.DockerImageName }}
+        image_name : ${{ env.DockerImageName }}/academy
         tag_name: ${{ env.DockerTagName }}
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
     - name: List docker images
       run: docker image ls
+    - uses: ./.github/actions/docker_push
+      with:
+        DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+
+
 
 

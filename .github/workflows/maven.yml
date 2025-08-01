@@ -27,7 +27,7 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - uses: ./.github/actions/maven_build
+    - uses: ./.github/actions/maven_build/action.yml
     - name: Create docker image
       run: docker build . --file src/main/docker/Dockerfile.jvm --tag academy:$(date +%s)
     - name: List docker images

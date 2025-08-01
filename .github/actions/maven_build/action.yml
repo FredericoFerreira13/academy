@@ -1,0 +1,5 @@
+name: Maven
+description: Build with Maven
+runs:
+  steps:
+    - run: mvn -B package --file pom.xml

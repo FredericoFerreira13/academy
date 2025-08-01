@@ -1,6 +1,6 @@
 name: Maven
 description: Build with Maven
 runs:
+  using: composite
   steps:
     - run: mvn -B package --file pom.xml
-      shell: bash

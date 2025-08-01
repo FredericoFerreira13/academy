@@ -36,13 +36,7 @@ jobs:
         image_name : $DockerImageName
         tag_name: $DockerTagName
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
-    - name: save docker image
-      run: docker save -o $DockerImageName.tar $DockerImageName:$DockerTagName
-
-  list-imgs:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
     - name: List docker images
       run: docker image ls
+
 

@@ -33,5 +33,10 @@ jobs:
         image_name : "academy"
         tag_name: "1.0"
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
+
+  list-imgs:
+    runs-on: ubuntu-latest
+    steps:
     - name: List docker images
       run: docker image ls
+

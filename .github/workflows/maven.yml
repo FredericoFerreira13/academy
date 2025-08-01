@@ -35,6 +35,7 @@ jobs:
         path_dockerfile: 'src/main/docker/Dockerfile.jvm'
 
   list-imgs:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: List docker images
